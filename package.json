@@ -1,11 +1,14 @@
 {
   "name": "@elioty-kid/iuuai",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "bin": {
     "iuuai": "./dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc"
   },
