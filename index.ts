@@ -1,1 +1,0 @@
-export const label = "you are using IuuaI"

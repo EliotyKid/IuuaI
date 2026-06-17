@@ -1,22 +1,25 @@
 {
   "name": "@elioty-kid/iuuai",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "bin": {
-    "eliot-ui": "./dist/cli.js"
+    "iuuai": "./dist/index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "dependencies": {
-    "commander": "^15.0.0",
-    "execa": "^9.6.1",
-    "fs-extra": "^11.3.5",
-    "path": "^0.12.7"
+    "axios": "^1.18.0",
+    "commander": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
   }
 }
