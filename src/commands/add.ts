@@ -1,28 +1,28 @@
-import { getManifest }
-  from "../services/github.js";
+import { getManifest } from "../services/github.js";
+import { installFiles } from "../services/installer.js";
+import { getConfig } from "../utils/config";
+import { ComponentManifest } from "../types/registry.js";
 
-import { installFiles }
-  from "../services/installer.js";
+export async function addCommand(component: string) {
+  const config = getConfig();
+  const installed = new Set<string>();
+  await installComponent(component, config.componentsPath, installed);
+  console.log(`✓ ${component} installed`);
+}
 
-import { getConfig }
-  from "../utils/config";
-
-export async function addCommand(
-  component: string
+async function installComponent(
+  component: string,
+  destination: string,
+  installed: Set<string>
 ) {
-  const config =
-    getConfig();
+  if (installed.has(component)) return;
+  installed.add(component);
 
-  const manifest =
-    await getManifest(component);
+  const manifest: ComponentManifest = await getManifest(component);
 
-  await installFiles(
-    component,
-    manifest.files,
-    config.componentsPath
-  );
+  for (const dep of manifest.registryDependencies || []) {
+    await installComponent(dep, destination, installed);
+  }
 
-  console.log(
-    `✓ ${component} installed`
-  );
+  await installFiles(component, manifest.files, destination);
 }
