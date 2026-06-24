@@ -24,5 +24,5 @@ async function installComponent(
     await installComponent(dep, destination, installed);
   }
 
-  await installFiles(component, manifest.files, destination);
+  await installFiles(component, manifest, destination);
 }
